@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Valentine 💖</title>
+
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1, h2 {
+      color: #b3003b;
+    }
+
+    .buttons {
+      margin-top: 25px;
+      display: flex;
+      gap: 20px;
+    }
+
+    button {
+      padding: 14px 28px;
+      font-size: 18px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+    }
+
+    #yesBtn {
+      background-color: #28a745;
+      color: white;
+    }
+
+    #noBtn {
+      position: absolute;
+      background-color: #ff4d6d;
+      color: white;
+      transition: left 0.15s ease, top 0.15s ease;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      width: 90%;
+      max-width: 900px;
+      margin-top: 25px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      opacity: 0;
+      transform: scale(0.8);
+      transition: 0.6s ease;
+    }
+
+    .gallery img.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .heart {
+      position: fixed;
+      color: red;
+      font-size: 22px;
+      animation: floatUp 2.5s linear forwards;
+    }
+
+    @keyframes floatUp {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(-120px); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Will you be my Valentine? 💌</h1>
+
+  <div class="buttons">
+    <button id="yesBtn">Yes 💚</button>
+    <button id="noBtn">No 😜</button>
+  </div>
+
+  <audio id="music" src="love.mp3"></audio>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const music = document.getElementById("music");
+
+    noBtn.style.left = "55%";
+    noBtn.style.top = "55%";
+
+    function moveNo() {
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+
+    noBtn.addEventListener("mouseenter", moveNo);
+    noBtn.addEventListener("touchstart", moveNo);
+
+    yesBtn.addEventListener("click", () => {
+      document.body.innerHTML = `
+        <h1>💖 I knew it! 💖</h1>
+        <h2>I love you Lili</h2>
+        <h2>You are mine</h2>
+
+        <div class="gallery">
+          <img src="photo1.jpg">
+          <img src="photo2.jpg">
+          <img src="photo3.jpg">
+          <img src="photo4.jpg">
+        </div>
+      `;
+
+      music.play();
+      showPhotos();
+      startHearts();
+    });
+
+    function showPhotos() {
+      const images = document.querySelectorAll(".gallery img");
+      images.forEach((img, i) => {
+        setTimeout(() => img.classList.add("show"), i * 700);
+      });
+    }
+
+    function startHearts() {
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.textContent = "❤️";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.bottom = "0px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 2500);
+      }, 200);
+    }
+  </script>
+
+</body>
+</html>
