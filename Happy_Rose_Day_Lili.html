@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Rose Day Lili 🌹</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card {
+        background: #fff;
+        padding: 35px 40px;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        text-align: center;
+        max-width: 420px;
+        z-index: 10;
+        animation: fadeIn 2s ease;
+    }
+
+    h1 {
+        color: #c9184a;
+        font-size: 34px;
+        margin-bottom: 10px;
+    }
+
+    .rose {
+        font-size: 70px;
+        animation: pulse 1.5s infinite;
+    }
+
+    p {
+        font-size: 18px;
+        color: #6b0f1a;
+        line-height: 1.6;
+    }
+
+    .heart {
+        font-size: 26px;
+        color: #e63946;
+        animation: heartbeat 1.2s infinite;
+        margin: 15px 0;
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 30px;
+        background: #e63946;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        transition: transform 0.2s;
+    }
+
+    button:hover {
+        transform: scale(1.05);
+    }
+
+    .signature {
+        margin-top: 25px;
+        font-style: italic;
+        color: #7a1c2d;
+    }
+
+    .surprise {
+        display: none;
+        margin-top: 20px;
+        padding: 15px;
+        background: #fff0f3;
+        border-radius: 12px;
+        color: #9d0208;
+        font-size: 17px;
+        animation: fadeIn 1s ease;
+    }
+
+    @keyframes heartbeat {
+        0% { transform: scale(1); }
+        25% { transform: scale(1.2); }
+        40% { transform: scale(1); }
+        60% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.15); }
+        100% { transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .falling-rose {
+        position: absolute;
+        top: -50px;
+        font-size: 30px;
+        animation: fall linear infinite;
+        opacity: 0.8;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(-50px) rotate(0deg); }
+        100% { transform: translateY(110vh) rotate(360deg); }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <div class="rose">🌹</div>
+    <h1>Happy Rose Day, Lili</h1>
+
+    <p>
+        This rose is a little piece of my heart,<br>
+        just like you are.<br>
+        Thank you for making my life colorful,<br>
+        warm, and full of love.
+    </p>
+
+    <div class="heart">❤️ ❤️ ❤️</div>
+
+    <button onclick="showSurprise()">Tap for a Surprise 💌</button>
+
+    <div id="surprise" class="surprise">
+        Lili 🌸<br>
+        You are my favorite person, my peace,<br>
+        my smile, and my forever.<br>
+        Happy Rose Day ❤️🌹
+    </div>
+
+    <div class="signature">
+        Forever yours,<br>
+        Your loving husband 💖
+    </div>
+</div>
+
+<script>
+    function showSurprise() {
+        document.getElementById("surprise").style.display = "block";
+    }
+
+    for (let i = 0; i < 20; i++) {
+        let rose = document.createElement("div");
+        rose.className = "falling-rose";
+        rose.innerHTML = "🌹";
+        rose.style.left = Math.random() * 100 + "vw";
+        rose.style.animationDuration = (5 + Math.random() * 5) + "s";
+        rose.style.fontSize = (20 + Math.random() * 20) + "px";
+        document.body.appendChild(rose);
+    }
+</script>
+
+</body>
+</html>
